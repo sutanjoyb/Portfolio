@@ -250,12 +250,12 @@ export default function About() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-        <div className="lg:col-span-5 flex flex-col justify-stretch">
+        <div className="lg:col-span-5 flex flex-col justify-center items-center">
           <div
             ref={imageWrapperRef}
             onMouseMove={handlePhotoMouseMove}
             onMouseLeave={handlePhotoMouseLeave}
-            className="group relative w-full h-[380px] sm:h-[460px] lg:h-full rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] border border-black/10"
+            className="group relative w-48 h-64 sm:w-60 sm:h-80 lg:w-full lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] border border-black/10 mx-auto"
             style={{ transformStyle: "preserve-3d" }}
           >
             <img

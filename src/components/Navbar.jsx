@@ -141,21 +141,21 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
     <>
       <nav
         ref={navRef}
-        className="absolute top-0 left-0 right-0 w-full flex items-center justify-between text-sm sm:text-base tracking-tight pt-4 pb-0 select-none z-50 px-4 sm:px-8 gap-2"
+        className="absolute top-0 left-0 right-0 w-full flex items-center justify-between text-sm sm:text-base tracking-tight pt-4 pb-0 select-none z-50 px-3 sm:px-8 gap-2"
       >
-        <div className="flex items-center min-w-0">
+        <div className="flex items-center min-w-0 max-w-[45%] sm:max-w-none">
           <a
             ref={brandRef}
             href="#"
             onMouseEnter={handleBrandEnter}
             onMouseMove={(e) => handleMagneticMove(e, brandRef, 0.2)}
             onMouseLeave={() => handleMagneticLeave(brandRef)}
-            className="group font-bold text-sm sm:text-lg md:text-xl tracking-tight font-sans text-black hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-1 truncate"
+            className="group font-bold text-xs sm:text-lg md:text-xl tracking-tight font-sans text-black hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-0.5 sm:gap-1 truncate"
           >
             <span className="truncate">{name}</span>
             <span
               ref={tmRef}
-              className="text-xs font-mono font-black text-black/50 tracking-tighter inline-block transition-colors shrink-0"
+              className="text-[10px] sm:text-xs font-mono font-black text-black/50 tracking-tighter inline-block transition-colors shrink-0"
             >
               ™
             </span>
@@ -200,7 +200,7 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
 
         <div
           ref={ctaRef}
-          className="flex items-center gap-2 sm:gap-4 pointer-events-auto shrink-0"
+          className="flex items-center gap-1.5 sm:gap-4 pointer-events-auto shrink-0"
         >
           <a
             ref={resumeBtnRef}
@@ -209,11 +209,11 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
             rel="noopener noreferrer"
             onMouseMove={(e) => handleMagneticMove(e, resumeBtnRef, 0.25)}
             onMouseLeave={() => handleMagneticLeave(resumeBtnRef)}
-            className="group relative inline-flex items-center gap-1.5 sm:gap-2.5 font-mono text-xs sm:text-sm border border-black/20 bg-black text-white px-3.5 sm:px-5 py-2 rounded-full shadow-sm hover:bg-neutral-800 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden"
+            className="group relative inline-flex items-center gap-1 sm:gap-2.5 font-mono text-[11px] sm:text-sm border border-black/20 bg-black text-white px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-sm hover:bg-neutral-800 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden shrink-0"
           >
             <span className="font-bold tracking-wider">RESUME</span>
             <svg
-              className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -228,21 +228,21 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full border border-black/20 bg-white text-black focus:outline-none active:scale-95"
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-black/20 bg-white text-black focus:outline-none active:scale-95 shrink-0"
             aria-label="Toggle mobile menu"
           >
             <span
-              className={`w-4 h-0.5 bg-black transition-transform duration-200 ${
+              className={`w-3.5 h-0.5 bg-black transition-transform duration-200 ${
                 mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-1"
               }`}
             />
             <span
-              className={`w-4 h-0.5 bg-black transition-opacity duration-200 my-1 ${
+              className={`w-3.5 h-0.5 bg-black transition-opacity duration-200 my-1 ${
                 mobileMenuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`w-4 h-0.5 bg-black transition-transform duration-200 ${
+              className={`w-3.5 h-0.5 bg-black transition-transform duration-200 ${
                 mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-1"
               }`}
             />

@@ -93,7 +93,7 @@ export default function Footer() {
       <div className="border-t border-black/15 my-6" />
 
       <div className="w-full flex items-center justify-center overflow-hidden select-none cursor-default py-6">
-        <h1 className="text-[clamp(2rem,9.5vw,9rem)] font-black uppercase tracking-tight leading-none text-black/90 text-center truncate w-full">
+        <h1 className="text-[clamp(2rem,9.5vw,9rem)] font-black uppercase tracking-tight leading-none text-black/90 blur-[3px] hover:blur-0 transition-all duration-300 text-center truncate w-full">
           SUTANJOY.
         </h1>
       </div>
@@ -109,7 +109,7 @@ export default function Footer() {
               {lastUpdated || "AUG 2026"}
             </span>
           </div>
-          <span className="text-black/70 hidden md:inline">
+          <span className="text-black/80 font-semibold">
             DESIGNED & DEVELOPED BY SUTANJOY
           </span>
         </div>
