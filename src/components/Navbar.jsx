@@ -13,6 +13,7 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
   const linksRef = useRef([]);
 
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -137,104 +138,148 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
   ];
 
   return (
-    <nav
-      ref={navRef}
-      className="absolute top-0 left-0 right-0 w-full flex items-center justify-between text-sm sm:text-base tracking-tight pt-3 pb-0 select-none z-50 px-4 sm:px-8"
-    >
-      <div className="flex items-center">
-        <a
-          ref={brandRef}
-          href="#"
-          onMouseEnter={handleBrandEnter}
-          onMouseMove={(e) => handleMagneticMove(e, brandRef, 0.2)}
-          onMouseLeave={() => handleMagneticLeave(brandRef)}
-          className="group font-bold text-base sm:text-lg md:text-xl tracking-tight font-sans text-black hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-1.5"
-        >
-          <span>{name}</span>
-          <span
-            ref={tmRef}
-            className="text-xs font-mono font-black text-black/50 tracking-tighter inline-block transition-colors"
-          >
-            ™
-          </span>
-        </a>
-      </div>
-
-      <div
-        ref={islandRef}
-        onMouseLeave={handleIslandLeave}
-        className="relative flex items-center gap-1 bg-white/85 backdrop-blur-xl border border-black/15 p-1 rounded-full shadow-lg shadow-black/5 will-change-transform"
+    <>
+      <nav
+        ref={navRef}
+        className="absolute top-0 left-0 right-0 w-full flex items-center justify-between text-sm sm:text-base tracking-tight pt-4 pb-0 select-none z-50 px-4 sm:px-8 gap-2"
       >
-        <div
-          ref={pillRef}
-          className="absolute top-1 bottom-1 left-0 bg-black rounded-full pointer-events-none opacity-0 scale-90 will-change-transform z-0 shadow-sm"
-          style={{ width: 0 }}
-        />
-
-        {links.map((link, idx) => {
-          const isHovered = hoveredIdx === idx;
-          return (
-            <a
-              key={link.label}
-              ref={(el) => (linksRef.current[idx] = el)}
-              href={link.href}
-              onMouseEnter={() => handleLinkHover(idx)}
-              onMouseMove={(e) =>
-                handleMagneticMove(e, linksRef.current[idx], 0.25)
-              }
-              onMouseLeave={() => handleMagneticLeave(linksRef.current[idx])}
-              className={`relative z-10 px-4 sm:px-5 py-1.5 rounded-full font-mono text-xs sm:text-sm uppercase tracking-wider transition-colors duration-150 inline-block will-change-transform active:scale-90 select-none ${
-                isHovered
-                  ? "text-white font-bold"
-                  : "text-black/80 hover:text-black font-medium"
-              }`}
+        <div className="flex items-center min-w-0">
+          <a
+            ref={brandRef}
+            href="#"
+            onMouseEnter={handleBrandEnter}
+            onMouseMove={(e) => handleMagneticMove(e, brandRef, 0.2)}
+            onMouseLeave={() => handleMagneticLeave(brandRef)}
+            className="group font-bold text-sm sm:text-lg md:text-xl tracking-tight font-sans text-black hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-1 truncate"
+          >
+            <span className="truncate">{name}</span>
+            <span
+              ref={tmRef}
+              className="text-xs font-mono font-black text-black/50 tracking-tighter inline-block transition-colors shrink-0"
             >
-              {link.label}
-            </a>
-          );
-        })}
-      </div>
+              ™
+            </span>
+          </a>
+        </div>
 
-      <div
-        ref={ctaRef}
-        className="flex items-center gap-4 sm:gap-6 pointer-events-auto"
-      >
-        <a
-          ref={resumeBtnRef}
-          href="/Sutanjoy_Bhattacharjee_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          onMouseMove={(e) => handleMagneticMove(e, resumeBtnRef, 0.25)}
-          onMouseLeave={() => handleMagneticLeave(resumeBtnRef)}
-          className="group relative inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm border border-black/20 bg-black text-white px-5 sm:px-6 py-2.5 rounded-full shadow-sm hover:bg-neutral-800 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden"
+        {/* Desktop Dynamic Island Nav */}
+        <div
+          ref={islandRef}
+          onMouseLeave={handleIslandLeave}
+          className="relative hidden md:flex items-center gap-1 bg-white/85 backdrop-blur-xl border border-black/15 p-1 rounded-full shadow-lg shadow-black/5 will-change-transform shrink-0"
         >
-          <span className="font-bold tracking-wider">RESUME</span>
-          <svg
-            className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
+          <div
+            ref={pillRef}
+            className="absolute top-1 bottom-1 left-0 bg-black rounded-full pointer-events-none opacity-0 scale-90 will-change-transform z-0 shadow-sm"
+            style={{ width: 0 }}
+          />
+
+          {links.map((link, idx) => {
+            const isHovered = hoveredIdx === idx;
+            return (
+              <a
+                key={link.label}
+                ref={(el) => (linksRef.current[idx] = el)}
+                href={link.href}
+                onMouseEnter={() => handleLinkHover(idx)}
+                onMouseMove={(e) =>
+                  handleMagneticMove(e, linksRef.current[idx], 0.25)
+                }
+                onMouseLeave={() => handleMagneticLeave(linksRef.current[idx])}
+                className={`relative z-10 px-4 py-1.5 rounded-full font-mono text-xs sm:text-sm uppercase tracking-wider transition-colors duration-150 inline-block will-change-transform active:scale-90 select-none ${
+                  isHovered
+                    ? "text-white font-bold"
+                    : "text-black/80 hover:text-black font-medium"
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <div
+          ref={ctaRef}
+          className="flex items-center gap-2 sm:gap-4 pointer-events-auto shrink-0"
+        >
+          <a
+            ref={resumeBtnRef}
+            href="/Sutanjoy_Bhattacharjee_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseMove={(e) => handleMagneticMove(e, resumeBtnRef, 0.25)}
+            onMouseLeave={() => handleMagneticLeave(resumeBtnRef)}
+            className="group relative inline-flex items-center gap-1.5 sm:gap-2.5 font-mono text-xs sm:text-sm border border-black/20 bg-black text-white px-3.5 sm:px-5 py-2 rounded-full shadow-sm hover:bg-neutral-800 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden"
           >
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="7 10 12 15 17 10" />
-            <line x1="12" y1="15" x2="12" y2="3" />
-          </svg>
-        </a>
+            <span className="font-bold tracking-wider">RESUME</span>
+            <svg
+              className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </a>
 
-        <a
-          ref={contactBtnRef}
-          href="#contact"
-          onMouseMove={(e) => handleMagneticMove(e, contactBtnRef, 0.2)}
-          onMouseLeave={() => handleMagneticLeave(contactBtnRef)}
-          className="group hidden sm:inline-flex items-center gap-1.5 font-mono text-xs sm:text-sm border-b-2 border-black text-black hover:opacity-60 transition-opacity pb-0.5 active:scale-95 will-change-transform"
-        >
-          <span className="font-semibold">GET IN TOUCH</span>
-          <span className="inline-block font-bold transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
-            ↗
-          </span>
-        </a>
-      </div>
-    </nav>
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full border border-black/20 bg-white text-black focus:outline-none active:scale-95"
+            aria-label="Toggle mobile menu"
+          >
+            <span
+              className={`w-4 h-0.5 bg-black transition-transform duration-200 ${
+                mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-1"
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-black transition-opacity duration-200 my-1 ${
+                mobileMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-black transition-transform duration-200 ${
+                mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-1"
+              }`}
+            />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Drawer Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden flex justify-end">
+          <div className="w-64 bg-[#faf9f5] h-full shadow-2xl p-6 flex flex-col justify-between border-l border-black/15 animate-in slide-in-from-right duration-300">
+            <div className="space-y-6 pt-16">
+              <span className="text-xs font-mono uppercase tracking-widest text-black/40 block font-bold">
+                Navigation
+              </span>
+              <ul className="space-y-4 font-mono text-base font-semibold">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-black hover:text-black/60 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border-t border-black/10 pt-4">
+              <p className="text-xs font-mono text-black/50">
+                Sutanjoy Bhattacharjee © 2026
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

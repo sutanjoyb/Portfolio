@@ -15,50 +15,12 @@ export default function Projects() {
   const handleMouseMove = (e, index) => {
     const card = cardRefs.current[index];
     if (!card) return;
-
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     card.style.setProperty("--mouse-x", `${x}px`);
     card.style.setProperty("--mouse-y", `${y}px`);
-
-    const normX = x / rect.width - 0.5;
-    const normY = y / rect.height - 0.5;
-
-    gsap.to(card, {
-      rotateY: normX * 4,
-      rotateX: -normY * 4,
-      transformPerspective: 1000,
-      duration: 0.2,
-      ease: "power2.out",
-    });
-  };
-
-  const handleMouseEnter = (index) => {
-    setHoveredIndex(index);
-    const card = cardRefs.current[index];
-    if (card) {
-      const pills = card.querySelectorAll(".tech-pill");
-      gsap.fromTo(
-        pills,
-        { y: 2, scale: 0.98 },
-        { y: 0, scale: 1, stagger: 0.02, duration: 0.18, ease: "power2.out" },
-      );
-    }
-  };
-
-  const handleMouseLeave = (index) => {
-    setHoveredIndex(null);
-    const card = cardRefs.current[index];
-    if (!card) return;
-
-    gsap.to(card, {
-      rotateY: 0,
-      rotateX: 0,
-      duration: 0.35,
-      ease: "power2.out",
-    });
   };
 
   useEffect(() => {
@@ -98,7 +60,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="mt-28 sm:mt-36 mb-16 relative z-10 w-full"
+      className="mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
     >
       <div
         ref={headerRef}
@@ -110,7 +72,7 @@ export default function Projects() {
               ✦ 02 FEATURED ARCHIVE
             </span>
           </div>
-          <h3 className="text-[clamp(1.75rem,4.2vw,4.5rem)] font-black tracking-tighter uppercase text-black leading-none whitespace-nowrap">
+          <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black leading-none">
             Stuff I Actually Built.
           </h3>
         </div>
@@ -133,9 +95,9 @@ export default function Projects() {
               key={project.id}
               ref={(el) => (cardRefs.current[index] = el)}
               onMouseMove={(e) => handleMouseMove(e, index)}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              className={`group relative rounded-[32px] border-2 bg-[#fdfdfc] p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center will-change-transform ${
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className={`group relative rounded-[28px] sm:rounded-[32px] border-2 bg-[#fdfdfc] p-6 sm:p-10 lg:p-12 transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center will-change-transform ${
                 isHovered
                   ? "border-black shadow-2xl scale-[1.008] z-20"
                   : "border-black/15 shadow-sm hover:border-black/40"
@@ -151,24 +113,18 @@ export default function Projects() {
               <div
                 className={`absolute ${
                   isFlipped ? "left-6 sm:left-10" : "right-6 sm:right-10"
-                } top-4 text-[clamp(4.5rem,10vw,9rem)] font-black text-black/[0.04] leading-none select-none pointer-events-none group-hover:text-black/[0.07] transition-colors duration-300`}
+                } top-4 text-[4rem] sm:text-[7rem] font-black text-black/[0.04] leading-none select-none pointer-events-none`}
                 style={{ fontFamily: "Impact, 'Arial Black', sans-serif" }}
               >
                 0{index + 1}
               </div>
 
               <div
-                className={`absolute top-0 ${
-                  isFlipped ? "left-0 rounded-l-full" : "right-0 rounded-r-full"
-                } w-2 h-0 bg-black group-hover:h-full transition-all duration-300 pointer-events-none`}
-              />
-
-              <div
                 className={`lg:col-span-6 flex justify-center items-center py-4 relative z-10 ${
                   isFlipped ? "order-2 lg:order-2" : "order-2 lg:order-1"
                 }`}
               >
-                <div className="relative w-full flex justify-center items-center transition-transform duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-[1.03]">
+                <div className="relative w-full flex justify-center items-center">
                   {project.deviceType === "iphone" ? (
                     <IPhoneMockup
                       imageUrl={project.previewUrl}
@@ -189,15 +145,13 @@ export default function Projects() {
                 }`}
               >
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-black/15 bg-black/[0.04] text-black/70">
-                      {project.deviceType === "iphone"
-                        ? "Mobile Interface"
-                        : "Web Application"}
-                    </span>
-                  </div>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-black/15 bg-black/[0.04] text-black/70 inline-block">
+                    {project.deviceType === "iphone"
+                      ? "Mobile Interface"
+                      : "Web Application"}
+                  </span>
 
-                  <h4 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-black mt-3 group-hover:translate-x-1.5 transition-transform duration-200">
+                  <h4 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-black mt-3">
                     {project.title}
                   </h4>
 
@@ -211,38 +165,29 @@ export default function Projects() {
                     {project.tech.map((t, idx) => (
                       <span
                         key={idx}
-                        className="tech-pill text-xs font-mono uppercase px-3.5 py-1.5 rounded-full border border-black/15 bg-black/[0.03] text-black font-medium transition-all duration-200 group-hover:bg-black group-hover:text-white group-hover:border-black"
+                        className="tech-pill text-xs font-mono uppercase px-3.5 py-1.5 rounded-full border border-black/15 bg-black/[0.03] text-black font-medium"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-6 pt-4 border-t border-black/10">
+                  <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-4 border-t border-black/10">
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2.5 text-xs font-mono font-semibold uppercase tracking-wider px-6 py-3 rounded-full bg-black text-white shadow-sm hover:bg-neutral-800 hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-150 group/btn"
+                      className="inline-flex items-center gap-2.5 text-xs font-mono font-semibold uppercase tracking-wider px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black text-white shadow-sm hover:bg-neutral-800 transition-all"
                     >
                       <span>Live Demo</span>
-                      <svg
-                        className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
-                        <line x1="7" y1="17" x2="17" y2="7" />
-                        <polyline points="7 7 17 7 17 17" />
-                      </svg>
+                      <span>↗</span>
                     </a>
 
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs font-mono font-bold uppercase tracking-wider underline underline-offset-4 text-black/70 hover:text-black transition-colors duration-150"
+                      className="text-xs font-mono font-bold uppercase tracking-wider underline underline-offset-4 text-black/70 hover:text-black transition-colors"
                     >
                       Source Code
                     </a>
