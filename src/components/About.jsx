@@ -229,21 +229,21 @@ export default function About() {
     >
       <div
         ref={headerRef}
-        className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black pb-5 mb-10 gap-4"
+        className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black dark:border-white/20 pb-5 mb-10 gap-4 transition-colors duration-300"
       >
         <div className="text-left">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs uppercase tracking-[0.25em] text-black font-mono font-bold">
+            <span className="text-xs uppercase tracking-[0.25em] text-black dark:text-white font-mono font-bold">
               ✦ 01 DOSSIER
             </span>
           </div>
-          <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black leading-none">
+          <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black dark:text-white leading-none">
             Want The Lore, Huh?
           </h3>
         </div>
 
         <div className="md:text-right">
-          <p className="text-xs sm:text-sm font-mono text-black/70 uppercase tracking-widest max-w-xs md:ml-auto">
+          <p className="text-xs sm:text-sm font-mono text-black/70 dark:text-white/70 uppercase tracking-widest max-w-xs md:ml-auto">
             Turning coffee into code & auditing breaking bugs since day one.
           </p>
         </div>
@@ -255,7 +255,7 @@ export default function About() {
             ref={imageWrapperRef}
             onMouseMove={handlePhotoMouseMove}
             onMouseLeave={handlePhotoMouseLeave}
-            className="group relative w-48 h-64 sm:w-60 sm:h-80 lg:w-full lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] border border-black/10 mx-auto"
+            className="group relative w-48 h-64 sm:w-60 sm:h-80 lg:w-full lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] dark:bg-[#1f2937] border border-black/10 dark:border-white/10 mx-auto transition-colors duration-300"
             style={{ transformStyle: "preserve-3d" }}
           >
             <img
@@ -276,26 +276,26 @@ export default function About() {
           className="lg:col-span-7 flex flex-col justify-between space-y-8 lg:pl-2"
         >
           <div>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-black leading-snug">
+            <p className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-black dark:text-white leading-snug">
               I build{" "}
-              <span className="bg-black text-white px-2.5 py-0.5 rounded-xl font-bold inline-block shadow-md">
+              <span className="bg-black text-white dark:bg-white dark:text-black px-2.5 py-0.5 rounded-xl font-bold inline-block shadow-md transition-colors duration-300">
                 clean, fast, and responsive
               </span>{" "}
               web interfaces and contribute to open-source software ecosystems.
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-black/15 pt-6">
-            <span className="text-xs font-mono uppercase tracking-widest text-black/50 block font-bold">
+          <div className="space-y-3 border-t border-black/15 dark:border-white/15 pt-6 transition-colors duration-300">
+            <span className="text-xs font-mono uppercase tracking-widest text-black/50 dark:text-white/50 block font-bold">
               The Background
             </span>
-            <p className="text-sm sm:text-base text-black/80 font-light leading-relaxed">
+            <p className="text-sm sm:text-base text-black/80 dark:text-white/80 font-light leading-relaxed">
               My engineering approach prioritizes clean architecture, modular
               component structure, and polished interaction design. Whether
               building complete frontend ecosystems or optimizing web
               performance, I focus on delivering seamless end-user experiences.
             </p>
-            <p className="text-xs sm:text-sm text-black/65 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-black/65 dark:text-white/65 font-light leading-relaxed">
               Beyond frontend development, I have experience working with
               Python, C, C++, and Java to solve real-world problems
               systematically and audit codebase logic for performance and
@@ -305,25 +305,25 @@ export default function About() {
 
           <div
             id="experience"
-            className="space-y-3 border-t border-black/15 pt-6"
+            className="space-y-3 border-t border-black/15 dark:border-white/15 pt-6 transition-colors duration-300"
           >
-            <span className="text-xs font-mono uppercase tracking-widest text-black/50 block font-bold">
+            <span className="text-xs font-mono uppercase tracking-widest text-black/50 dark:text-white/50 block font-bold">
               Experience & Milestones
             </span>
             <div className="space-y-4">
               {milestones.map((item) => (
                 <div
                   key={item.title}
-                  className="relative border-l-2 border-black pl-4 sm:pl-5 space-y-0.5 group"
+                  className="relative border-l-2 border-black dark:border-white/40 pl-4 sm:pl-5 space-y-0.5 group transition-colors duration-300"
                 >
-                  <span className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-black opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                  <span className="text-xs font-mono text-black/50 uppercase tracking-wider">
+                  <span className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-black dark:bg-white opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  <span className="text-xs font-mono text-black/50 dark:text-white/50 uppercase tracking-wider">
                     {item.year}
                   </span>
-                  <h4 className="text-sm sm:text-base font-bold text-black">
+                  <h4 className="text-sm sm:text-base font-bold text-black dark:text-white">
                     {item.title}
                   </h4>
-                  <p className="text-xs sm:text-sm text-black/70 font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-black/70 dark:text-white/70 font-light leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -333,9 +333,9 @@ export default function About() {
         </div>
       </div>
 
-      <div className="border-t border-black/15 mt-16 pt-10 overflow-hidden text-center">
+      <div className="border-t border-black/15 dark:border-white/15 mt-16 pt-10 overflow-hidden text-center transition-colors duration-300">
         <div className="flex justify-center items-center mb-6">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-black/60 font-bold">
+          <span className="text-xs font-mono uppercase tracking-[0.25em] text-black/60 dark:text-white/60 font-bold">
             ✦ Technical Arsenal ✦
           </span>
         </div>
@@ -352,7 +352,7 @@ export default function About() {
             {[...skills, ...skills].map((skill, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/15 bg-[#faf9f5] font-mono text-xs sm:text-sm text-black font-semibold shadow-sm shrink-0"
+                className="flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/15 dark:border-white/20 bg-[#faf9f5] dark:bg-[#12161c] font-mono text-xs sm:text-sm text-black dark:text-white font-semibold shadow-sm shrink-0 transition-colors duration-300"
               >
                 <span className="shrink-0">{skill.svg}</span>
                 <span>{skill.name}</span>

@@ -132,10 +132,10 @@ export default function FooterOutro() {
   return (
     <footer
       ref={containerRef}
-      className="relative w-full pt-16 sm:pt-20 pb-24 sm:pb-28 mt-20 sm:mt-24 border-t-2 border-black select-none overflow-hidden px-4 sm:px-8"
+      className="relative w-full pt-16 sm:pt-20 pb-24 sm:pb-28 mt-20 sm:mt-24 border-t-2 border-black dark:border-white/20 select-none overflow-hidden px-4 sm:px-8 transition-colors duration-300"
     >
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(3.5rem,12vw,14rem)] font-black text-black/[0.03] uppercase tracking-tighter pointer-events-none whitespace-nowrap leading-none transition-transform duration-700"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(3.5rem,12vw,14rem)] font-black text-black/[0.03] dark:text-white/[0.03] uppercase tracking-tighter pointer-events-none whitespace-nowrap leading-none transition-transform duration-700"
         style={{ fontFamily: "Impact, 'Arial Black', sans-serif" }}
       >
         GO TOUCH GRASS
@@ -143,42 +143,42 @@ export default function FooterOutro() {
 
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10 space-y-6">
         <div className="flex items-center justify-center gap-2">
-          <span className="text-xs uppercase tracking-[0.25em] text-black font-mono font-bold">
+          <span className="text-xs uppercase tracking-[0.25em] text-black dark:text-white font-mono font-bold">
             ✦ 04 FINAL WARNING
           </span>
         </div>
 
         <div ref={headlineRef} className="space-y-4 w-full">
           <h2
-            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-black leading-none hover:tracking-normal transition-all duration-300 cursor-default"
+            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-black dark:text-white leading-none transition-all duration-300 cursor-default hover:text-neutral-800 dark:hover:text-neutral-300 hover:scale-[1.02] hover:[text-shadow:4px_4px_0px_rgba(0,0,0,0.15)] dark:hover:[text-shadow:4px_4px_0px_rgba(255,255,255,0.15)]"
             style={{ fontFamily: "Impact, 'Arial Black', sans-serif" }}
           >
             Still scrolling down? <br />
-            <span className="bg-black text-white px-3 sm:px-4 py-0.5 rounded-2xl inline-block mt-2 sm:mt-3 shadow-md">
+            <span className="bg-black text-white dark:bg-white dark:text-black px-3 sm:px-4 py-0.5 rounded-2xl inline-block mt-2 sm:mt-3 shadow-md hover:-translate-y-1 hover:rotate-1 transition-transform duration-200">
               Go touch some grass.
             </span>
           </h2>
 
-          <p className="text-xs sm:text-sm font-mono text-black/60 uppercase tracking-widest max-w-md mx-auto pt-2 px-2">
+          <p className="text-xs sm:text-sm font-mono text-black/60 dark:text-white/60 uppercase tracking-widest max-w-md mx-auto pt-2 px-2">
             You hit the absolute bottom of the DOM tree. Nothing to see here
             except questionable life choices.
           </p>
 
           <div
             ref={dialogueCardRef}
-            className="relative flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 bg-white/95 border-2 border-black p-4 sm:px-5 sm:py-3 rounded-2xl shadow-[4px_4px_0px_#000000] w-full max-w-2xl mx-auto text-left will-change-transform mt-6 overflow-hidden"
+            className="relative flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 bg-white/95 dark:bg-[#12161c]/95 border-2 border-black dark:border-white/20 p-4 sm:px-5 sm:py-3 rounded-2xl shadow-[4px_4px_0px_#000000] dark:shadow-[4px_4px_0px_#ffffff20] w-full max-w-2xl mx-auto text-left will-change-transform mt-6 overflow-hidden transition-colors duration-300"
             style={{ transformStyle: "preserve-3d" }}
           >
-            <span className="font-mono text-[11px] sm:text-xs text-black font-black shrink-0 uppercase tracking-wider bg-black/10 px-2 py-0.5 rounded">
+            <span className="font-mono text-[11px] sm:text-xs text-black dark:text-white font-black shrink-0 uppercase tracking-wider bg-black/10 dark:bg-white/10 px-2 py-0.5 rounded">
               SUTANJOY:
             </span>
             <p
               ref={textRef}
-              className="text-xs sm:text-sm font-mono text-black font-medium w-full whitespace-normal sm:whitespace-nowrap overflow-hidden text-ellipsis flex-1 leading-relaxed"
+              className="text-xs sm:text-sm font-mono text-black dark:text-white font-medium w-full whitespace-normal sm:whitespace-nowrap overflow-hidden text-ellipsis flex-1 leading-relaxed"
             >
               "{dialogues[quoteIndex]}"
             </p>
-            <span className="hidden sm:inline-block w-1.5 h-3.5 bg-black animate-pulse shrink-0" />
+            <span className="hidden sm:inline-block w-1.5 h-3.5 bg-black dark:bg-white animate-pulse shrink-0" />
           </div>
         </div>
 
@@ -189,18 +189,18 @@ export default function FooterOutro() {
             onClick={handleNextDialogue}
             onMouseMove={(e) => handleMagneticMove(e, buttonRef, 0.28)}
             onMouseLeave={() => handleMagneticLeave(buttonRef)}
-            className="relative overflow-hidden group px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-black bg-black text-white font-mono text-xs uppercase tracking-wider font-bold shadow-[3px_3px_0px_#000] hover:shadow-[1px_1px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150 active:scale-95 cursor-pointer will-change-transform inline-flex items-center gap-2.5 sm:gap-3"
+            className="relative overflow-hidden group px-6 sm:px-8 py-3.5 sm:py-4 rounded-full border-2 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-bold shadow-[3px_3px_0px_#000] dark:shadow-[3px_3px_0px_#fff] hover:shadow-[1px_1px_0px_#000] dark:hover:shadow-[1px_1px_0px_#fff] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-150 active:scale-95 cursor-pointer will-change-transform inline-flex items-center gap-2.5 sm:gap-3"
           >
             <span
               ref={rippleRef}
-              className="absolute w-8 h-8 -top-4 -left-4 bg-white/40 rounded-full pointer-events-none opacity-0"
+              className="absolute w-8 h-8 -top-4 -left-4 bg-white/40 dark:bg-black/20 rounded-full pointer-events-none opacity-0"
             />
 
             <span>Bother Sutanjoy Again</span>
-            <span className="font-mono text-[10px] text-white/50 group-hover:text-white/80 transition-colors">
+            <span className="font-mono text-[10px] text-white/50 dark:text-black/50 group-hover:text-white/80 dark:group-hover:text-black/80 transition-colors">
               [{quoteIndex + 1}/{dialogues.length}]
             </span>
-            <span className="inline-block transition-transform duration-300 group-hover:rotate-180 text-white/70">
+            <span className="inline-block transition-transform duration-300 group-hover:rotate-180 text-white/70 dark:text-black/70">
               ✦
             </span>
           </button>

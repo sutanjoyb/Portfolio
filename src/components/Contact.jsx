@@ -107,21 +107,21 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
     >
       <div
         ref={headerRef}
-        className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black pb-5 mb-10 gap-4"
+        className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black dark:border-white/20 pb-5 mb-10 gap-4 transition-colors duration-300"
       >
         <div className="text-left flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs uppercase tracking-[0.25em] text-black font-mono font-bold">
+            <span className="text-xs uppercase tracking-[0.25em] text-black dark:text-white font-mono font-bold">
               ✦ 03 RADAR
             </span>
           </div>
-          <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black leading-none">
+          <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black dark:text-white leading-none">
             Don't Be A Stranger.
           </h3>
         </div>
 
         <div className="md:text-right shrink-0">
-          <p className="text-xs sm:text-sm font-mono text-black/70 uppercase tracking-widest max-w-[280px] md:ml-auto">
+          <p className="text-xs sm:text-sm font-mono text-black/70 dark:text-white/70 uppercase tracking-widest max-w-[280px] md:ml-auto">
             MY INBOX DOESN'T BITE. DROP A LINE BEFORE I FIX ANOTHER BUG.
           </p>
         </div>
@@ -129,24 +129,24 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch relative z-10">
         <div ref={leftCardRef} className="lg:col-span-5 flex flex-col">
-          <div className="bg-[#f2f1ed] border border-black/15 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm h-full">
+          <div className="bg-[#f2f1ed] dark:bg-[#12161c] border border-black/15 dark:border-white/20 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm h-full transition-colors duration-300">
             <div className="space-y-3">
-              <span className="text-xs font-mono tracking-wider text-black/50 uppercase block font-bold">
+              <span className="text-xs font-mono tracking-wider text-black/50 dark:text-white/50 uppercase block font-bold">
                 Direct Email
               </span>
-              <h4 className="text-2xl sm:text-3xl font-bold tracking-tight text-black">
+              <h4 className="text-2xl sm:text-3xl font-bold tracking-tight text-black dark:text-white">
                 Shoot An Email
               </h4>
-              <p className="text-sm text-black/70 font-light leading-relaxed">
+              <p className="text-sm text-black/70 dark:text-white/70 font-light leading-relaxed">
                 Prefer using your own mail client? Drop a direct message into my
                 primary inbox anytime.
               </p>
             </div>
 
-            <div className="mt-12 pt-6 border-t border-black/10 flex items-center justify-between gap-3">
+            <div className="mt-12 pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-3 transition-colors duration-300">
               <a
                 href={`mailto:${email}`}
-                className="font-mono text-xs sm:text-sm font-semibold text-black hover:underline truncate"
+                className="font-mono text-xs sm:text-sm font-semibold text-black dark:text-white hover:underline truncate"
               >
                 {email}
               </a>
@@ -159,7 +159,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-all shrink-0 cursor-pointer ${
                   copied
                     ? "bg-emerald-600 border-emerald-600 text-white"
-                    : "bg-black text-white border-black"
+                    : "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white"
                 }`}
               >
                 {copied ? "✓" : "📋"}
@@ -170,13 +170,13 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
 
         <div
           ref={rightCardRef}
-          className="lg:col-span-7 bg-[#f8f7f4] border border-black/15 rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col justify-center"
+          className="lg:col-span-7 bg-[#f8f7f4] dark:bg-[#12161c] border border-black/15 dark:border-white/20 rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col justify-center transition-colors duration-300"
         >
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-black/10 pb-4 mb-6 gap-1">
-            <h4 className="text-lg font-bold text-black text-left">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-1 transition-colors duration-300">
+            <h4 className="text-lg font-bold text-black dark:text-white text-left">
               Send a Message
             </h4>
-            <p className="text-xs text-black/60 sm:text-right">
+            <p className="text-xs text-black/60 dark:text-white/60 sm:text-right">
               I will reply back promptly.
             </p>
           </div>
@@ -184,7 +184,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="space-y-1.5">
-                <label className="block text-xs font-mono uppercase tracking-wider text-black/70">
+                <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                   Name *
                 </label>
                 <input
@@ -195,12 +195,12 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                   onChange={(e) =>
                     setFormState({ ...formState, name: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-black/20 focus:border-black py-2 text-sm text-black placeholder-black/30 focus:outline-none"
+                  className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-colors duration-300"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="block text-xs font-mono uppercase tracking-wider text-black/70">
+                <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                   Email *
                 </label>
                 <input
@@ -211,13 +211,13 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                   onChange={(e) =>
                     setFormState({ ...formState, email: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-black/20 focus:border-black py-2 text-sm text-black placeholder-black/30 focus:outline-none"
+                  className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-colors duration-300"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase tracking-wider text-black/70">
+              <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                 Subject *
               </label>
               <select
@@ -225,22 +225,40 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 onChange={(e) =>
                   setFormState({ ...formState, subject: e.target.value })
                 }
-                className="w-full bg-transparent border-b-2 border-black/20 focus:border-black py-2 text-sm text-black focus:outline-none cursor-pointer"
+                className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white focus:outline-none cursor-pointer transition-colors duration-300"
               >
-                <option value="Job Opportunity">
+                <option
+                  value="Job Opportunity"
+                  className="bg-white dark:bg-[#12161c]"
+                >
                   Job / Internship Opportunity
                 </option>
-                <option value="Project Collaboration">
+                <option
+                  value="Project Collaboration"
+                  className="bg-white dark:bg-[#12161c]"
+                >
                   Project Collaboration
                 </option>
-                <option value="Freelance Work">Freelance Project</option>
-                <option value="General Discussion">General Chat</option>
-                <option value="Other">Other</option>
+                <option
+                  value="Freelance Work"
+                  className="bg-white dark:bg-[#12161c]"
+                >
+                  Freelance Project
+                </option>
+                <option
+                  value="General Discussion"
+                  className="bg-white dark:bg-[#12161c]"
+                >
+                  General Chat
+                </option>
+                <option value="Other" className="bg-white dark:bg-[#12161c]">
+                  Other
+                </option>
               </select>
             </div>
 
             <div className="space-y-1.5 pt-2">
-              <label className="block text-xs font-mono uppercase tracking-wider text-black/70">
+              <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                 Message *
               </label>
               <textarea
@@ -251,12 +269,12 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 onChange={(e) =>
                   setFormState({ ...formState, message: e.target.value })
                 }
-                className="w-full bg-transparent border-b-2 border-black/20 focus:border-black py-2 text-sm text-black placeholder-black/30 focus:outline-none resize-none"
+                className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none resize-none transition-colors duration-300"
               />
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
-              <span className="text-xs text-black/50 font-mono">
+              <span className="text-xs text-black/50 dark:text-white/50 font-mono">
                 * All fields are required
               </span>
 
@@ -264,7 +282,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 ref={submitBtnRef}
                 type="submit"
                 disabled={isSubmitting || isSent}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-black text-white font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-800 disabled:opacity-50 cursor-pointer transition-all"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 cursor-pointer transition-all"
               >
                 {isSubmitting
                   ? "Sending..."

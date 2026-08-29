@@ -226,7 +226,7 @@ export default function Hero({
         className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-4 pt-10"
       >
         <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
-          <div className="flex flex-wrap items-center justify-center font-mono font-bold text-black/70 text-[clamp(1rem,3.8vw,3.2rem)] tracking-normal pointer-events-auto">
+          <div className="flex flex-wrap items-center justify-center font-mono font-bold text-black/70 dark:text-white/80 text-[clamp(1rem,3.8vw,3.2rem)] tracking-normal pointer-events-auto">
             {codeLetters.map((char, i) => {
               const isTag = char === "<" || char === ">" || char === "/";
               return (
@@ -237,7 +237,9 @@ export default function Hero({
                     handleCodeLetterHover(codeLettersRef.current[i])
                   }
                   className={`inline-block transition-colors duration-150 will-change-transform cursor-pointer ${
-                    isTag ? "text-black/40" : "text-black"
+                    isTag
+                      ? "text-black/40 dark:text-white/40"
+                      : "text-black dark:text-white"
                   }`}
                   style={{ marginRight: char === " " ? "0.25em" : "0" }}
                 >
@@ -247,7 +249,7 @@ export default function Hero({
             })}
           </div>
 
-          <div className="flex flex-wrap items-center justify-center font-black uppercase text-black text-[clamp(2.4rem,9.5vw,9.5rem)] leading-none tracking-tighter pointer-events-auto mt-2">
+          <div className="flex flex-wrap items-center justify-center font-black uppercase text-black dark:text-white text-[clamp(2.4rem,9.5vw,9.5rem)] leading-none tracking-tighter pointer-events-auto mt-2">
             {nameLetters.map((char, i) => (
               <span
                 key={`name-${i}`}
@@ -255,7 +257,7 @@ export default function Hero({
                 onMouseEnter={() =>
                   handleNameLetterHover(nameLettersRef.current[i])
                 }
-                className="inline-block transition-colors duration-150 will-change-transform cursor-pointer hover:text-black/80 opacity-100"
+                className="inline-block transition-colors duration-150 will-change-transform cursor-pointer hover:text-black/80 dark:hover:text-white/80 opacity-100"
                 style={{
                   fontFamily:
                     "Impact, 'Arial Black', -apple-system, sans-serif",
@@ -267,7 +269,7 @@ export default function Hero({
             ))}
           </div>
 
-          <p className="font-mono text-xs sm:text-sm text-black/60 uppercase tracking-widest mt-3 pointer-events-auto max-w-xs sm:max-w-md px-2">
+          <p className="font-mono text-xs sm:text-sm text-black/60 dark:text-white/60 uppercase tracking-widest mt-3 pointer-events-auto max-w-xs sm:max-w-md px-2">
             I write code that works on the first try (rarely) and spend the rest
             of the day asking why.
           </p>
@@ -285,12 +287,12 @@ export default function Hero({
                 rel="noreferrer"
                 onMouseMove={(e) => handleSocialMouseMove(e, idx)}
                 onMouseLeave={() => handleSocialMouseLeave(idx)}
-                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-black/20 bg-white/90 backdrop-blur-sm flex items-center justify-center text-black shadow-sm transition-colors duration-200 hover:bg-black hover:text-white hover:border-black active:scale-95 will-change-transform"
+                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-black/20 dark:border-white/20 bg-white/90 dark:bg-[#12161c]/90 backdrop-blur-sm flex items-center justify-center text-black dark:text-white shadow-sm transition-colors duration-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white active:scale-95 will-change-transform"
                 aria-label={item.name}
               >
                 {item.icon}
               </a>
-              <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2 py-0.5 bg-black text-white text-[10px] font-mono rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-md hidden sm:block">
+              <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black text-[10px] font-mono rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-md hidden sm:block">
                 {item.name}
               </span>
             </div>
@@ -304,7 +306,7 @@ export default function Hero({
           {roles.map((role, idx) => (
             <h2
               key={idx}
-              className="text-xs sm:text-xl md:text-2xl font-light tracking-tight leading-snug text-black"
+              className="text-xs sm:text-xl md:text-2xl font-light tracking-tight leading-snug text-black dark:text-white"
             >
               {role}
             </h2>

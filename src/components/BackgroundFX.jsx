@@ -79,6 +79,10 @@ export default function BackgroundFX() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
+      // Check if dark mode is active to dynamically switch dot/line color to white
+      const isDark = document.documentElement.classList.contains("dark");
+      const primaryColor = isDark ? "255, 255, 255" : "0, 0, 0";
+
       mouse.x += (mouse.targetX - mouse.x) * 0.15;
       mouse.y += (mouse.targetY - mouse.y) * 0.15;
 
@@ -87,7 +91,7 @@ export default function BackgroundFX() {
         sw.radius += sw.speed;
         sw.opacity *= 0.94;
 
-        ctx.strokeStyle = `rgba(0, 0, 0, ${sw.opacity * 0.15})`;
+        ctx.strokeStyle = `rgba(${primaryColor}, ${sw.opacity * 0.18})`;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
@@ -122,7 +126,8 @@ export default function BackgroundFX() {
           }
         }
 
-        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        // Render dot in white when dark mode is enabled, black otherwise
+        ctx.fillStyle = `rgba(${primaryColor}, ${isDark ? 0.75 : 0.4})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -134,7 +139,9 @@ export default function BackgroundFX() {
           const cDist = Math.sqrt(cdx * cdx + cdy * cdy);
 
           if (cDist < 110) {
-            ctx.strokeStyle = `rgba(0, 0, 0, ${0.12 * (1 - cDist / 110)})`;
+            ctx.strokeStyle = `rgba(${primaryColor}, ${
+              (isDark ? 0.2 : 0.12) * (1 - cDist / 110)
+            })`;
             ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
@@ -160,8 +167,8 @@ export default function BackgroundFX() {
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] bg-black/[0.035] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-[36rem] h-[36rem] bg-black/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] bg-black/[0.035] dark:bg-white/[0.035] rounded-full blur-3xl pointer-events-none transition-colors duration-300" />
+      <div className="absolute -bottom-32 -right-32 w-[36rem] h-[36rem] bg-black/[0.04] dark:bg-white/[0.04] rounded-full blur-3xl pointer-events-none transition-colors duration-300" />
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
