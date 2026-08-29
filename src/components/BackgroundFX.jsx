@@ -79,7 +79,6 @@ export default function BackgroundFX() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Check if dark mode is active to dynamically switch dot/line color to white
       const isDark = document.documentElement.classList.contains("dark");
       const primaryColor = isDark ? "255, 255, 255" : "0, 0, 0";
 
@@ -126,7 +125,6 @@ export default function BackgroundFX() {
           }
         }
 
-        // Render dot in white when dark mode is enabled, black otherwise
         ctx.fillStyle = `rgba(${primaryColor}, ${isDark ? 0.75 : 0.4})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

@@ -162,8 +162,6 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
             </span>
           </a>
         </div>
-
-        {/* Desktop Dynamic Island Nav */}
         <div
           ref={islandRef}
           onMouseLeave={handleIslandLeave}
@@ -228,7 +226,6 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
             </svg>
           </a>
 
-          {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-black/20 dark:border-white/20 bg-white dark:bg-[#12161c] text-black dark:text-white focus:outline-none active:scale-95 shrink-0 transition-colors duration-300"
@@ -253,7 +250,6 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
         </div>
       </nav>
 
-      {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-md z-40 md:hidden flex justify-end">
           <div className="w-64 bg-[#faf9f5] dark:bg-[#0a0d12] h-full shadow-2xl p-6 flex flex-col justify-between border-l border-black/15 dark:border-white/20 animate-in slide-in-from-right duration-300 transition-colors duration-300">

@@ -147,7 +147,6 @@ export default function TerminalCommandBar() {
   return (
     <>
       <div className="w-full flex items-center justify-center py-20 relative z-10 gap-3">
-        {/* Left Side Badge with Arrow Icon */}
         <div
           ref={badgeLeftRef}
           className="hidden sm:flex items-center gap-1.5 bg-yellow-300 border-2 border-black dark:border-white/20 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold uppercase shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] -rotate-3 select-none pointer-events-none text-black"
@@ -173,7 +172,6 @@ export default function TerminalCommandBar() {
           <span>Launch Terminal Assistant CLI</span>
         </button>
 
-        {/* Right Side Badge with Arrow Icon */}
         <div
           ref={badgeRightRef}
           className="hidden sm:flex items-center gap-1.5 bg-emerald-300 border-2 border-black dark:border-white/20 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold uppercase shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] rotate-3 select-none pointer-events-none text-black"
