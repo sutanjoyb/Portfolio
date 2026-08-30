@@ -28,7 +28,7 @@ export default function ScrollToTop() {
 
   return (
     <div
-      className={`fixed bottom-8 right-8 z-50 transition-all duration-300 ease-out ${
+      className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 transition-all duration-300 ease-out ${
         isVisible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-6 pointer-events-none"
@@ -37,14 +37,14 @@ export default function ScrollToTop() {
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top"
-        className="group relative flex items-center justify-center w-12 h-12 bg-white dark:bg-[#12161c] border-2 border-black dark:border-white/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 active:scale-95 transition-all duration-150 cursor-pointer overflow-hidden"
+        className="group relative flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12 bg-white dark:bg-[#12161c] border-2 border-black dark:border-white/20 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)] sm:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 active:scale-95 transition-all duration-150 cursor-pointer overflow-hidden"
       >
         <div
           className="absolute bottom-0 left-0 w-full bg-black/10 dark:bg-white/15 transition-all duration-100 pointer-events-none"
           style={{ height: `${scrollProgress}%` }}
         />
         <svg
-          className="w-5 h-5 text-black dark:text-white group-hover:-translate-y-1 transition-transform duration-200"
+          className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-black dark:text-white group-hover:-translate-y-1 transition-transform duration-200"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -55,7 +55,7 @@ export default function ScrollToTop() {
           <line x1="12" y1="19" x2="12" y2="5" />
           <polyline points="5 12 12 5 19 12" />
         </svg>
-        <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-black dark:bg-white" />
+        <span className="absolute top-[2px] right-[2px] sm:top-1 sm:right-1 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-black dark:bg-white" />
       </button>
     </div>
   );

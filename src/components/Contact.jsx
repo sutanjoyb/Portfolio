@@ -17,7 +17,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "Job Opportunity",
+    subject: "",
     message: "",
   });
 
@@ -34,7 +34,13 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formState.name || !formState.email || !formState.message) return;
+    if (
+      !formState.name ||
+      !formState.email ||
+      !formState.subject ||
+      !formState.message
+    )
+      return;
     setIsSubmitting(true);
 
     try {
@@ -62,7 +68,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
         setFormState({
           name: "",
           email: "",
-          subject: "Job Opportunity",
+          subject: "",
           message: "",
         });
         setTimeout(() => setIsSent(false), 4000);
@@ -103,7 +109,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
     <section
       id="contact"
       ref={sectionRef}
-      className="mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
+      className="scroll-mt-28 mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
     >
       <div
         ref={headerRef}
@@ -129,24 +135,24 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch relative z-10">
         <div ref={leftCardRef} className="lg:col-span-5 flex flex-col">
-          <div className="bg-[#f2f1ed] dark:bg-[#12161c] border border-black/15 dark:border-white/20 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm h-full transition-colors duration-300">
-            <div className="space-y-3">
-              <span className="text-xs font-mono tracking-wider text-black/50 dark:text-white/50 uppercase block font-bold">
+          <div className="bg-[#f2f1ed] dark:bg-[#12161c] border-2 border-black/15 dark:border-white/20 rounded-2xl sm:rounded-3xl p-5 sm:p-8 flex flex-col justify-between shadow-sm h-full transition-colors duration-300">
+            <div className="space-y-2 sm:space-y-3">
+              <span className="text-[10px] sm:text-xs font-mono tracking-widest text-black/50 dark:text-white/50 uppercase block font-bold">
                 Direct Email
               </span>
-              <h4 className="text-2xl sm:text-3xl font-bold tracking-tight text-black dark:text-white">
+              <h4 className="text-xl sm:text-3xl font-black tracking-tight text-black dark:text-white">
                 Shoot An Email
               </h4>
-              <p className="text-sm text-black/70 dark:text-white/70 font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-black/70 dark:text-white/70 font-light leading-relaxed">
                 Prefer using your own mail client? Drop a direct message into my
                 primary inbox anytime.
               </p>
             </div>
 
-            <div className="mt-12 pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-3 transition-colors duration-300">
+            <div className="mt-8 sm:mt-12 pt-4 sm:pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-2 transition-colors duration-300">
               <a
                 href={`mailto:${email}`}
-                className="font-mono text-xs sm:text-sm font-semibold text-black dark:text-white hover:underline truncate"
+                className="font-mono text-[11px] sm:text-sm font-semibold text-black dark:text-white hover:underline truncate"
               >
                 {email}
               </a>
@@ -156,13 +162,41 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 type="button"
                 onClick={handleCopy}
                 aria-label="Copy email address"
-                className={`relative w-10 h-10 rounded-full flex items-center justify-center border transition-all shrink-0 cursor-pointer ${
+                className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all shrink-0 cursor-pointer ${
                   copied
                     ? "bg-emerald-600 border-emerald-600 text-white"
                     : "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white"
                 }`}
               >
-                {copied ? "✓" : "📋"}
+                {copied ? (
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
@@ -170,21 +204,25 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
 
         <div
           ref={rightCardRef}
-          className="lg:col-span-7 bg-[#f8f7f4] dark:bg-[#12161c] border border-black/15 dark:border-white/20 rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col justify-center transition-colors duration-300"
+          className="lg:col-span-7 bg-[#f8f7f4] dark:bg-[#12161c] border-2 border-black/15 dark:border-white/20 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-sm flex flex-col justify-center transition-colors duration-300"
         >
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-black/10 dark:border-white/10 pb-4 mb-6 gap-1 transition-colors duration-300">
-            <h4 className="text-lg font-bold text-black dark:text-white text-left">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-black/10 dark:border-white/10 pb-3 sm:pb-4 mb-4 sm:mb-6 gap-1 transition-colors duration-300">
+            <h4 className="text-base sm:text-lg font-bold text-black dark:text-white text-left">
               Send a Message
             </h4>
-            <p className="text-xs text-black/60 dark:text-white/60 sm:text-right">
+            <p className="text-[11px] sm:text-xs text-black/60 dark:text-white/60 sm:text-right font-mono">
               I will reply back promptly.
             </p>
           </div>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="space-y-1.5">
-                <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="space-y-4 sm:space-y-5"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div className="space-y-1">
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                   Name *
                 </label>
                 <input
@@ -195,12 +233,12 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                   onChange={(e) =>
                     setFormState({ ...formState, name: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-colors duration-300"
+                  className="w-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/20 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-black dark:focus:border-white transition-all duration-300"
                 />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
+              <div className="space-y-1">
+                <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                   Email *
                 </label>
                 <input
@@ -211,22 +249,30 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                   onChange={(e) =>
                     setFormState({ ...formState, email: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none transition-colors duration-300"
+                  className="w-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/20 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-black dark:focus:border-white transition-all duration-300"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
+            <div className="space-y-1">
+              <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                 Subject *
               </label>
               <select
+                required
                 value={formState.subject}
                 onChange={(e) =>
                   setFormState({ ...formState, subject: e.target.value })
                 }
-                className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white focus:outline-none cursor-pointer transition-colors duration-300"
+                className="w-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/20 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-black dark:text-white focus:outline-none focus:border-black dark:focus:border-white cursor-pointer transition-all duration-300"
               >
+                <option
+                  value=""
+                  disabled
+                  className="bg-white dark:bg-[#12161c]"
+                >
+                  Select a subject...
+                </option>
                 <option
                   value="Job Opportunity"
                   className="bg-white dark:bg-[#12161c]"
@@ -257,8 +303,8 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
               </select>
             </div>
 
-            <div className="space-y-1.5 pt-2">
-              <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
+            <div className="space-y-1">
+              <label className="block text-[10px] sm:text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70">
                 Message *
               </label>
               <textarea
@@ -269,12 +315,12 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 onChange={(e) =>
                   setFormState({ ...formState, message: e.target.value })
                 }
-                className="w-full bg-transparent border-b-2 border-black/20 dark:border-white/20 focus:border-black dark:focus:border-white py-2 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none resize-none transition-colors duration-300"
+                className="w-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/15 dark:border-white/20 rounded-xl p-3.5 text-xs sm:text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-black dark:focus:border-white resize-none transition-all duration-300"
               />
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
-              <span className="text-xs text-black/50 dark:text-white/50 font-mono">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+              <span className="text-[10px] sm:text-xs text-black/50 dark:text-white/50 font-mono">
                 * All fields are required
               </span>
 
@@ -282,7 +328,7 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
                 ref={submitBtnRef}
                 type="submit"
                 disabled={isSubmitting || isSent}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 cursor-pointer transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-black text-white dark:bg-white dark:text-black font-mono text-xs uppercase tracking-wider font-semibold hover:opacity-85 disabled:opacity-50 cursor-pointer transition-all shadow-sm"
               >
                 {isSubmitting
                   ? "Sending..."

@@ -182,7 +182,7 @@ export default function FooterOutro() {
           </div>
         </div>
 
-        <div className="pt-4">
+        <div className="pt-4 flex flex-col items-center gap-2">
           <button
             ref={buttonRef}
             type="button"
@@ -196,12 +196,9 @@ export default function FooterOutro() {
               className="absolute w-8 h-8 -top-4 -left-4 bg-white/40 dark:bg-black/20 rounded-full pointer-events-none opacity-0"
             />
 
-            <span>Bother Sutanjoy Again</span>
+            <span>CLICK HERE TO BOTHER SUTANJOY</span>
             <span className="font-mono text-[10px] text-white/50 dark:text-black/50 group-hover:text-white/80 dark:group-hover:text-black/80 transition-colors">
               [{quoteIndex + 1}/{dialogues.length}]
-            </span>
-            <span className="inline-block transition-transform duration-300 group-hover:rotate-180 text-white/70 dark:text-black/70">
-              ✦
             </span>
           </button>
         </div>

@@ -6,13 +6,10 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
   const navRef = useRef(null);
   const brandRef = useRef(null);
   const tmRef = useRef(null);
-  const islandRef = useRef(null);
-  const pillRef = useRef(null);
   const ctaRef = useRef(null);
   const resumeBtnRef = useRef(null);
   const linksRef = useRef([]);
 
-  const [hoveredIdx, setHoveredIdx] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -25,9 +22,9 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
         { y: 0, opacity: 1, duration: 0.6 },
       )
         .fromTo(
-          islandRef.current,
-          { y: -25, scale: 0.9, opacity: 0 },
-          { y: 0, scale: 1, opacity: 1, duration: 0.65, ease: "back.out(1.6)" },
+          linksRef.current.filter(Boolean),
+          { y: -20, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.6 },
           "-=0.4",
         )
         .fromTo(
@@ -92,44 +89,19 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
     });
   };
 
-  const handleLinkHover = (idx) => {
-    setHoveredIdx(idx);
-    const linkEl = linksRef.current[idx];
-    const islandEl = islandRef.current;
-    if (!linkEl || !islandEl || !pillRef.current) return;
+  const handleNavLinkClick = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (!target) return;
 
-    const linkRect = linkEl.getBoundingClientRect();
-    const islandRect = islandEl.getBoundingClientRect();
+    // Click micro-animation effect
+    const el = e.currentTarget;
+    gsap
+      .timeline()
+      .to(el, { scale: 0.9, y: 3, duration: 0.1, ease: "power2.out" })
+      .to(el, { scale: 1, y: 0, duration: 0.3, ease: "elastic.out(1.5, 0.4)" });
 
-    gsap.killTweensOf(pillRef.current);
-    gsap.to(pillRef.current, {
-      x: linkRect.left - islandRect.left,
-      width: linkRect.width,
-      opacity: 1,
-      scaleX: 1,
-      scaleY: 1,
-      duration: 0.25,
-      ease: "power3.out",
-    });
-  };
-
-  const handleIslandLeave = () => {
-    setHoveredIdx(null);
-    if (!pillRef.current) return;
-
-    gsap.killTweensOf(pillRef.current);
-    gsap.to(pillRef.current, {
-      opacity: 0,
-      scaleX: 0.8,
-      scaleY: 0.8,
-      duration: 0.2,
-      ease: "power2.out",
-      onComplete: () => {
-        if (pillRef.current) {
-          gsap.set(pillRef.current, { width: 0, opacity: 0 });
-        }
-      },
-    });
+    target.scrollIntoView({ behavior: "smooth" });
   };
 
   const links = [
@@ -140,124 +112,124 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
 
   return (
     <>
-      <nav
-        ref={navRef}
-        className="w-full flex items-center justify-between text-sm sm:text-base tracking-tight pt-4 pb-0 select-none z-50 px-3 sm:px-8 gap-2 relative"
-      >
-        <div className="flex items-center min-w-0 max-w-[45%] sm:max-w-none">
-          <a
-            ref={brandRef}
-            href="#"
-            onMouseEnter={handleBrandEnter}
-            onMouseMove={(e) => handleMagneticMove(e, brandRef, 0.2)}
-            onMouseLeave={() => handleMagneticLeave(brandRef)}
-            className="group font-bold text-xs sm:text-lg md:text-xl tracking-tight font-sans text-black dark:text-white hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-0.5 sm:gap-1 truncate"
-          >
-            <span className="truncate">{name}</span>
-            <span
-              ref={tmRef}
-              className="text-[10px] sm:text-xs font-mono font-black text-black/50 dark:text-white/50 tracking-tighter inline-block transition-colors shrink-0"
-            >
-              ™
-            </span>
-          </a>
-        </div>
-        <div
-          ref={islandRef}
-          onMouseLeave={handleIslandLeave}
-          className="relative hidden md:flex items-center gap-1 bg-white/85 dark:bg-[#12161c]/85 backdrop-blur-xl border border-black/15 dark:border-white/20 p-1 rounded-full shadow-lg shadow-black/5 dark:shadow-white/5 will-change-transform shrink-0 transition-colors duration-300"
+      <header className="fixed top-0 left-0 w-full z-[100001] bg-[#faf9f5]/85 dark:bg-[#0a0d12]/85 backdrop-blur-md transition-colors duration-300 border-b border-black/10 dark:border-white/10">
+        <nav
+          ref={navRef}
+          className="max-w-7xl mx-auto w-full flex items-center justify-between text-sm sm:text-base tracking-tight py-3 sm:py-4 select-none px-4 sm:px-8 gap-2 relative"
         >
-          <div
-            ref={pillRef}
-            className="absolute top-1 bottom-1 left-0 bg-black dark:bg-white rounded-full pointer-events-none opacity-0 scale-90 will-change-transform z-0 shadow-sm"
-            style={{ width: 0 }}
-          />
+          <div className="flex items-center min-w-0 shrink">
+            <a
+              ref={brandRef}
+              href="#"
+              onMouseEnter={handleBrandEnter}
+              onMouseMove={(e) => handleMagneticMove(e, brandRef, 0.2)}
+              onMouseLeave={() => handleMagneticLeave(brandRef)}
+              className="group font-bold text-xs sm:text-lg md:text-xl tracking-tight font-sans text-black dark:text-white hover:opacity-85 transition-opacity active:scale-95 will-change-transform inline-flex items-center gap-0.5 sm:gap-1"
+            >
+              <span className="md:hidden">Sutanjoy</span>
+              <span className="hidden md:inline">{name}</span>
+              <span
+                ref={tmRef}
+                className="text-[10px] sm:text-xs font-mono font-black text-black/50 dark:text-white/50 tracking-tighter inline-block transition-colors shrink-0"
+              >
+                ™
+              </span>
+            </a>
+          </div>
 
-          {links.map((link, idx) => {
-            const isHovered = hoveredIdx === idx;
-            return (
+          {/* Desktop Navigation Links (Separate, No Container Border) */}
+          <div className="hidden md:flex items-center gap-8">
+            {links.map((link, idx) => (
               <a
                 key={link.label}
                 ref={(el) => (linksRef.current[idx] = el)}
                 href={link.href}
-                onMouseEnter={() => handleLinkHover(idx)}
+                onClick={(e) => handleNavLinkClick(e, link.href)}
                 onMouseMove={(e) =>
                   handleMagneticMove(e, linksRef.current[idx], 0.25)
                 }
                 onMouseLeave={() => handleMagneticLeave(linksRef.current[idx])}
-                className={`relative z-10 px-4 py-1.5 rounded-full font-mono text-xs sm:text-sm uppercase tracking-wider transition-colors duration-150 inline-block will-change-transform active:scale-90 select-none ${
-                  isHovered
-                    ? "text-white dark:text-black font-bold"
-                    : "text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-medium"
-                }`}
+                className="relative z-10 font-mono text-xs sm:text-sm uppercase tracking-wider text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-medium transition-colors duration-150 inline-block will-change-transform select-none cursor-pointer"
               >
                 {link.label}
               </a>
-            );
-          })}
-        </div>
+            ))}
+          </div>
 
-        <div
-          ref={ctaRef}
-          className="flex items-center gap-1.5 sm:gap-3 pointer-events-auto shrink-0"
-        >
-          <ThemeToggleBtn />
-
-          <a
-            ref={resumeBtnRef}
-            href="/Sutanjoy_Bhattacharjee_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            onMouseMove={(e) => handleMagneticMove(e, resumeBtnRef, 0.25)}
-            onMouseLeave={() => handleMagneticLeave(resumeBtnRef)}
-            className="group relative inline-flex items-center gap-1 sm:gap-2.5 font-mono text-[11px] sm:text-sm border border-black/20 dark:border-white/20 bg-black text-white dark:bg-white dark:text-black px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-sm hover:bg-neutral-800 dark:hover:bg-neutral-200 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden shrink-0"
+          <div
+            ref={ctaRef}
+            className="flex items-center gap-2 sm:gap-3 pointer-events-auto shrink-0"
           >
-            <span className="font-bold tracking-wider">RESUME</span>
-            <svg
-              className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
+            <div className="[&_span:not(:first-child)]:hidden">
+              <ThemeToggleBtn />
+            </div>
+
+            <a
+              ref={resumeBtnRef}
+              href={`${import.meta.env.BASE_URL}Sutanjoy_Bhattacharjee_Resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseMove={(e) => handleMagneticMove(e, resumeBtnRef, 0.25)}
+              onMouseLeave={() => handleMagneticLeave(resumeBtnRef)}
+              className="hidden sm:inline-flex group relative items-center gap-1 sm:gap-2.5 font-mono text-[11px] sm:text-sm border border-black/20 dark:border-white/20 bg-black text-white dark:bg-white dark:text-black px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-sm hover:bg-neutral-800 dark:hover:bg-neutral-200 hover:shadow-md transition-all duration-200 active:scale-95 will-change-transform overflow-hidden shrink-0"
             >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-          </a>
+              <span className="font-bold tracking-wider">RESUME</span>
+              <svg
+                className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-y-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
 
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-black/20 dark:border-white/20 bg-white dark:bg-[#12161c] text-black dark:text-white focus:outline-none active:scale-95 shrink-0 transition-colors duration-300"
-            aria-label="Toggle mobile menu"
-          >
-            <span
-              className={`w-3.5 h-0.5 bg-black dark:bg-white transition-transform duration-200 ${
-                mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-1"
-              }`}
-            />
-            <span
-              className={`w-3.5 h-0.5 bg-black dark:bg-white transition-opacity duration-200 my-1 ${
-                mobileMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`w-3.5 h-0.5 bg-black dark:bg-white transition-transform duration-200 ${
-                mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-1"
-              }`}
-            />
-          </button>
-        </div>
-      </nav>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden flex flex-col justify-center items-center w-9 h-9 rounded-2xl border-2 border-black dark:border-white/30 bg-[#faf9f5] dark:bg-[#12161c] text-black dark:text-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 focus:outline-none active:scale-95 shrink-0 transition-all duration-200 cursor-pointer relative z-[100002]"
+              aria-label="Toggle mobile menu"
+            >
+              <div className="w-4 h-3.5 flex flex-col justify-between items-center relative">
+                <span
+                  className={`w-full h-0.5 bg-black dark:bg-white transition-all duration-300 origin-center ${
+                    mobileMenuOpen ? "rotate-45 translate-y-[6px]" : ""
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-black dark:bg-white transition-all duration-300 ${
+                    mobileMenuOpen ? "opacity-0 scale-x-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`w-full h-0.5 bg-black dark:bg-white transition-all duration-300 origin-center ${
+                    mobileMenuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
+        </nav>
+      </header>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-md z-40 md:hidden flex justify-end">
-          <div className="w-64 bg-[#faf9f5] dark:bg-[#0a0d12] h-full shadow-2xl p-6 flex flex-col justify-between border-l border-black/15 dark:border-white/20 animate-in slide-in-from-right duration-300 transition-colors duration-300">
-            <div className="space-y-6 pt-16">
-              <span className="text-xs font-mono uppercase tracking-widest text-black/40 dark:text-white/40 block font-bold">
-                Navigation
-              </span>
-              <ul className="space-y-4 font-mono text-base font-semibold">
+        <div className="fixed inset-0 z-[99999] md:hidden flex justify-end">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-md animate-in fade-in duration-300"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          <div className="relative w-64 bg-[#faf9f5] dark:bg-[#0a0d12] h-full shadow-2xl p-6 flex flex-col justify-between border-l border-black/15 dark:border-white/20 animate-in slide-in-from-right duration-300 transition-colors duration-300 z-10">
+            <div className="space-y-6">
+              <div className="pt-2">
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-black/40 dark:text-white/40 font-bold block mb-1">
+                  Navigation
+                </span>
+                <div className="w-full h-[1px] bg-black/10 dark:bg-white/10" />
+              </div>
+              <ul className="space-y-4 font-mono text-base font-semibold pt-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     <a
@@ -271,10 +243,28 @@ export default function Navbar({ name = "Sutanjoy Bhattacharjee" }) {
                 ))}
               </ul>
             </div>
-            <div className="border-t border-black/10 dark:border-white/10 pt-4">
-              <p className="text-xs font-mono text-black/50 dark:text-white/50">
-                Sutanjoy Bhattacharjee © 2026
-              </p>
+
+            <div className="pt-4 flex flex-col items-center justify-center pb-2">
+              <a
+                href={`${import.meta.env.BASE_URL}Sutanjoy_Bhattacharjee_Resume.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black font-mono text-xs font-bold uppercase tracking-wider shadow-sm flex items-center justify-center gap-2"
+              >
+                <span>Resume</span>
+                <svg
+                  className="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>

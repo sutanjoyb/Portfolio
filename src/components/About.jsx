@@ -225,7 +225,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
+      className="scroll-mt-24 mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
     >
       <div
         ref={headerRef}
@@ -255,14 +255,14 @@ export default function About() {
             ref={imageWrapperRef}
             onMouseMove={handlePhotoMouseMove}
             onMouseLeave={handlePhotoMouseLeave}
-            className="group relative w-48 h-64 sm:w-60 sm:h-80 lg:w-full lg:h-full lg:min-h-[460px] rounded-2xl sm:rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] dark:bg-[#1f2937] border border-black/10 dark:border-white/10 mx-auto transition-colors duration-300"
+            className="group relative w-full max-w-[240px] sm:max-w-[260px] aspect-[3/4] rounded-2xl sm:rounded-3xl overflow-hidden will-change-transform cursor-pointer shadow-lg bg-[#e5e4de] dark:bg-[#1f2937] border border-black/10 dark:border-white/10 mx-auto transition-colors duration-300"
             style={{ transformStyle: "preserve-3d" }}
           >
             <img
               ref={imageRef}
               src={profileImg}
               alt="Sutanjoy Bhattacharjee"
-              className="w-full h-full object-cover object-center grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:contrast-110 transition-all duration-500 will-change-transform"
+              className="w-full h-full object-cover object-[center_20%] scale-125 grayscale-[20%] contrast-105 group-hover:grayscale-0 group-hover:contrast-110 transition-all duration-500 will-change-transform"
             />
             <div
               ref={glareRef}

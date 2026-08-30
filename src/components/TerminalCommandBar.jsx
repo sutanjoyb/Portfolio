@@ -22,24 +22,52 @@ export default function TerminalCommandBar() {
   const bottomRef = useRef(null);
   const badgeLeftRef = useRef(null);
   const badgeRightRef = useRef(null);
+  const arrowLeftRef = useRef(null);
+  const arrowRightRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(badgeLeftRef.current, {
-        y: -5,
+        y: -6,
+        rotate: -5,
         repeat: -1,
         yoyo: true,
-        duration: 0.6,
+        duration: 0.8,
         ease: "sine.inOut",
       });
 
       gsap.to(badgeRightRef.current, {
-        y: 5,
+        y: 6,
+        rotate: 5,
         repeat: -1,
         yoyo: true,
-        duration: 0.6,
+        duration: 0.8,
         ease: "sine.inOut",
-        delay: 0.3,
+        delay: 0.4,
+      });
+
+      gsap.to(arrowLeftRef.current, {
+        x: 8,
+        repeat: -1,
+        yoyo: true,
+        duration: 0.4,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(arrowRightRef.current, {
+        x: -8,
+        repeat: -1,
+        yoyo: true,
+        duration: 0.4,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(buttonRef.current, {
+        scale: 1.02,
+        repeat: -1,
+        yoyo: true,
+        duration: 1.2,
+        ease: "sine.inOut",
       });
     });
 
@@ -146,51 +174,52 @@ export default function TerminalCommandBar() {
 
   return (
     <>
-      <div className="w-full flex items-center justify-center py-20 relative z-10 gap-3">
+      <div className="w-full flex items-center justify-center py-12 sm:py-20 relative z-10 gap-2 sm:gap-6 px-3">
         <div
           ref={badgeLeftRef}
-          className="hidden sm:flex items-center gap-1.5 bg-yellow-300 border-2 border-black dark:border-white/20 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold uppercase shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] -rotate-3 select-none pointer-events-none text-black"
+          className="flex items-center gap-1 bg-yellow-300 border-2 border-black dark:border-white/20 px-2.5 py-1.5 rounded-xl text-[9px] sm:text-xs font-mono font-extrabold uppercase shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] dark:shadow-[2px_2px_0px_#fff] sm:dark:shadow-[3px_3px_0px_#fff] select-none pointer-events-none text-black shrink-0"
         >
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
-          </svg>
-          <span>Try this</span>
+          <span>CLICK</span>
+          <span ref={arrowLeftRef} className="text-xs sm:text-sm font-black inline-block">
+            ➔
+          </span>
         </div>
 
+  
         <button
           ref={buttonRef}
           onClick={() => setIsOpen(true)}
           onMouseEnter={() =>
-            gsap.to(buttonRef.current, { scale: 1.04, duration: 0.2 })
+            gsap.to(buttonRef.current, { scale: 1.06, duration: 0.2 })
           }
           onMouseLeave={() =>
             gsap.to(buttonRef.current, { scale: 1, duration: 0.2 })
           }
-          className="relative group flex items-center gap-3 px-8 py-4 rounded-2xl border-2 border-black dark:border-white/20 bg-[#faf9f5] dark:bg-[#12161c] text-black dark:text-white font-mono text-xs uppercase font-extrabold shadow-[5px_5px_0px_#000] dark:shadow-[5px_5px_0px_#fff] hover:shadow-none hover:translate-x-1.5 hover:translate-y-1.5 transition-all cursor-pointer"
+          className="relative group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl border-2 border-black dark:border-white/20 bg-[#faf9f5] dark:bg-[#12161c] text-black dark:text-white font-mono text-[10px] sm:text-sm uppercase font-black shadow-[3px_3px_0px_#000] sm:shadow-[7px_7px_0px_#000] dark:shadow-[3px_3px_0px_#fff] sm:dark:shadow-[7px_7px_0px_#fff] hover:shadow-none hover:translate-x-1 hover:translate-y-1 sm:hover:translate-x-2 sm:hover:translate-y-2 transition-all cursor-pointer text-center whitespace-nowrap overflow-hidden shrink"
         >
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-black dark:bg-white group-hover:scale-125 transition-transform" />
-          <span>Launch Terminal Assistant CLI</span>
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-black dark:bg-white group-hover:scale-125 transition-transform shrink-0 ml-1.5" />
+          <span className="truncate">TO LAUNCH CLI</span>
         </button>
 
         <div
           ref={badgeRightRef}
-          className="hidden sm:flex items-center gap-1.5 bg-emerald-300 border-2 border-black dark:border-white/20 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold uppercase shadow-[2px_2px_0px_#000] dark:shadow-[2px_2px_0px_#fff] rotate-3 select-none pointer-events-none text-black"
+          className="flex items-center gap-1 bg-emerald-300 border-2 border-black dark:border-white/20 px-2.5 py-1.5 rounded-xl text-[9px] sm:text-xs font-mono font-extrabold uppercase shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] dark:shadow-[2px_2px_0px_#fff] sm:dark:shadow-[3px_3px_0px_#fff] select-none pointer-events-none text-black shrink-0"
         >
-          <span>Interactive</span>
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-          </svg>
+          <span ref={arrowRightRef} className="text-xs sm:text-sm font-black inline-block">
+            ⬅
+          </span>
+          <span>SYSTEM</span>
         </div>
       </div>
 
       {isOpen && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 bg-black/50 backdrop-blur-md z-[999] flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[999] flex items-center justify-center p-4"
         >
           <div
             ref={modalRef}
-            className="w-full max-w-2xl bg-white dark:bg-[#12161c] text-black dark:text-white border-2 border-black dark:border-white/20 rounded-3xl shadow-[10px_10px_0px_#000] dark:shadow-[10px_10px_0px_#fff] font-mono text-xs overflow-hidden flex flex-col h-[440px]"
+            className="w-full max-w-2xl bg-white dark:bg-[#12161c] text-black dark:text-white border-2 border-black dark:border-white/20 rounded-3xl shadow-[10px_10px_0px_#000] dark:shadow-[10px_10px_0px_#fff] font-mono text-xs overflow-hidden flex flex-col h-[460px]"
           >
             <div className="flex items-center justify-between px-5 py-4 bg-[#faf9f5] dark:bg-[#1a212c] border-b-2 border-black dark:border-white/20">
               <div className="flex items-center gap-2">
@@ -220,8 +249,8 @@ export default function TerminalCommandBar() {
                     h.type === "user"
                       ? "text-black dark:text-white font-bold bg-black/5 dark:bg-white/5 px-3 py-1.5 rounded-xl w-max border border-black/10 dark:border-white/10"
                       : h.type === "system"
-                        ? "text-black/60 dark:text-white/60 italic font-medium"
-                        : "text-black/90 dark:text-white/90 pl-3.5 border-l-2 border-black dark:border-white font-medium"
+                      ? "text-black/60 dark:text-white/60 italic font-medium"
+                      : "text-black/90 dark:text-white/90 pl-3.5 border-l-2 border-black dark:border-white font-medium"
                   }
                 >
                   {h.text}

@@ -1,26 +1,4 @@
-import { useEffect, useState } from "react";
-
 export default function Footer() {
-  const [lastUpdated, setLastUpdated] = useState("");
-
-  useEffect(() => {
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      timeZone: "Asia/Kolkata",
-    });
-    const formattedTime = now.toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-      timeZone: "Asia/Kolkata",
-    });
-
-    setLastUpdated(`${formattedDate} · ${formattedTime} IST`);
-  }, []);
-
   const navLinks = [
     { num: "01", label: "Home", href: "#home" },
     { num: "02", label: "About", href: "#about" },
@@ -36,9 +14,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-full pt-16 pb-8 border-t border-black/15 dark:border-white/20 overflow-hidden max-w-7xl mx-auto px-4 sm:px-8 transition-colors duration-300">
+    <footer className="relative w-full pt-16 pb-8 border-t border-black/15 dark:border-white/25 overflow-hidden max-w-7xl mx-auto px-4 sm:px-8 transition-colors duration-300">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
-        <div className="md:col-span-6 space-y-4">
+        <div className="md:col-span-6 space-y-4 text-left">
           <h4 className="text-sm font-mono font-bold tracking-wider uppercase text-black dark:text-white">
             SUTANJOY BHATTACHARJEE ™
           </h4>
@@ -49,7 +27,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="md:col-span-3 space-y-3">
+        <div className="md:col-span-3 space-y-3 text-left">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-black dark:text-white block mb-4">
             NAVIGATION
           </span>
@@ -70,7 +48,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="md:col-span-3 space-y-3">
+        <div className="md:col-span-3 space-y-3 text-left">
           <span className="text-xs font-mono font-bold uppercase tracking-wider text-black dark:text-white block mb-4">
             CONNECT
           </span>
@@ -94,10 +72,24 @@ export default function Footer() {
 
       <div className="border-t border-black/15 dark:border-white/15 my-6" />
 
-      <div className="w-full flex items-center justify-center overflow-hidden select-none cursor-default py-6">
-        <h1 className="text-[clamp(2rem,9.5vw,9rem)] font-black uppercase tracking-tight leading-none text-black/90 dark:text-white/90 blur-[3px] hover:blur-0 transition-all duration-300 text-center truncate w-full">
-          SUTANJOY.
-        </h1>
+      <div className="w-full flex flex-col items-center justify-center overflow-hidden select-none cursor-default py-8 text-center space-y-3">
+        <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-black dark:text-white/60 font-bold whitespace-nowrap">
+          <span>◆</span>
+          <span>
+            05 THAT'S A WRAP —{" "}
+            <span className="font-bold text-black dark:text-white">
+              IT ENDS HERE
+            </span>
+          </span>
+        </div>
+        <div className="w-full overflow-hidden text-center py-1">
+          <h1 className="text-[clamp(1.1rem,4.5vw,3.2rem)] font-black uppercase tracking-tight leading-none text-black dark:text-white whitespace-nowrap">
+            NOW GO TOUCH{" "}
+            <span className="text-black/40 dark:text-white/40 font-light">
+              SOME GRASS
+            </span>
+          </h1>
+        </div>
       </div>
 
       <div className="border-t border-black/10 dark:border-white/10 pt-4">
@@ -105,15 +97,7 @@ export default function Footer() {
           <span className="font-bold text-black dark:text-white">
             © 2026 ALL RIGHTS RESERVED
           </span>
-          <div className="flex items-center gap-1.5 text-black/60 dark:text-white/60 font-semibold tracking-wider">
-            <span className="text-black/40 dark:text-white/40">
-              LAST UPDATED:
-            </span>
-            <span className="text-black dark:text-white tabular-nums">
-              {lastUpdated || "AUG 2026"}
-            </span>
-          </div>
-          <span className="text-black/80 dark:text-white/80 font-semibold">
+          <span className="text-black/80 dark:text-white/80 font-semibold truncate max-w-full">
             DESIGNED & DEVELOPED BY SUTANJOY
           </span>
         </div>

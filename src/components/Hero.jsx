@@ -220,63 +220,101 @@ export default function Hero({
       className="relative w-full h-screen min-h-[560px] max-h-[900px] flex flex-col justify-between select-none p-0 m-0 overflow-hidden"
     >
       <Navbar name="Sutanjoy Bhattacharjee" />
-
       <div
         ref={headlineRef}
-        className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-4 pt-10"
+        className="w-full flex-1 flex flex-col items-center justify-center text-center px-2 sm:absolute sm:inset-0 sm:pointer-events-none z-10 my-auto py-12"
       >
-        <div className="flex flex-col items-center justify-center text-center w-full max-w-4xl">
-          <div className="flex flex-wrap items-center justify-center font-mono font-bold text-black/70 dark:text-white/80 text-[clamp(1rem,3.8vw,3.2rem)] tracking-normal pointer-events-auto">
-            {codeLetters.map((char, i) => {
-              const isTag = char === "<" || char === ">" || char === "/";
-              return (
-                <span
-                  key={`code-${i}`}
-                  ref={(el) => (codeLettersRef.current[i] = el)}
-                  onMouseEnter={() =>
-                    handleCodeLetterHover(codeLettersRef.current[i])
-                  }
-                  className={`inline-block transition-colors duration-150 will-change-transform cursor-pointer ${
-                    isTag
-                      ? "text-black/40 dark:text-white/40"
-                      : "text-black dark:text-white"
-                  }`}
-                  style={{ marginRight: char === " " ? "0.25em" : "0" }}
-                >
-                  {char}
-                </span>
-              );
-            })}
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center font-black uppercase text-black dark:text-white text-[clamp(2.4rem,9.5vw,9.5rem)] leading-none tracking-tighter pointer-events-auto mt-2">
-            {nameLetters.map((char, i) => (
+        <div className="w-full max-w-[98vw] flex flex-wrap items-center justify-center font-mono font-bold text-black/70 dark:text-white/80 text-[clamp(1rem,3.2vw,5.5rem)] tracking-tight sm:pointer-events-auto">
+          {codeLetters.map((char, i) => {
+            const isTag = char === "<" || char === ">" || char === "/";
+            return (
               <span
-                key={`name-${i}`}
-                ref={(el) => (nameLettersRef.current[i] = el)}
+                key={`code-${i}`}
+                ref={(el) => (codeLettersRef.current[i] = el)}
                 onMouseEnter={() =>
-                  handleNameLetterHover(nameLettersRef.current[i])
+                  handleCodeLetterHover(codeLettersRef.current[i])
                 }
-                className="inline-block transition-colors duration-150 will-change-transform cursor-pointer hover:text-black/80 dark:hover:text-white/80 opacity-100"
-                style={{
-                  fontFamily:
-                    "Impact, 'Arial Black', -apple-system, sans-serif",
-                  marginRight: char === " " ? "0.25em" : "0",
-                }}
+                className={`inline-block transition-colors duration-150 will-change-transform cursor-pointer ${
+                  isTag
+                    ? "text-black/40 dark:text-white/40"
+                    : "text-black dark:text-white"
+                }`}
+                style={{ marginRight: char === " " ? "0.25em" : "0" }}
               >
                 {char}
               </span>
-            ))}
+            );
+          })}
+        </div>
+
+        <div className="w-full max-w-[98vw] flex flex-wrap items-center justify-center font-black uppercase text-black/85 dark:text-white/90 text-[clamp(2.2rem,8.8vw,16rem)] leading-none tracking-tighter mt-1 sm:mt-2 sm:pointer-events-auto">
+          {nameLetters.map((char, i) => (
+            <span
+              key={`name-${i}`}
+              ref={(el) => (nameLettersRef.current[i] = el)}
+              onMouseEnter={() =>
+                handleNameLetterHover(nameLettersRef.current[i])
+              }
+              className="inline-block transition-colors duration-150 will-change-transform cursor-pointer hover:text-black/70 dark:hover:text-white/70 opacity-100"
+              style={{
+                fontFamily: "Impact, 'Arial Black', -apple-system, sans-serif",
+                marginRight: char === " " ? "0.25em" : "0",
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </div>
+
+        <p className="font-mono text-[10px] sm:text-lg text-black/60 dark:text-white/60 uppercase tracking-widest mt-1 sm:mt-3 max-w-[300px] sm:max-w-3xl px-2 sm:pointer-events-auto">
+          I write code that works on the first try (rarely) and spend the rest
+          of the day asking why.
+        </p>
+
+        <div className="flex flex-col items-center gap-1.5 mt-2.5 sm:hidden pointer-events-auto w-full">
+          <div className="relative flex items-center justify-center w-full max-w-[190px] my-0.5">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-black/15 dark:border-white/20" />
+            </div>
+            <span className="relative z-10 px-2 bg-[#faf9f5] dark:bg-[#0a0d12] font-mono text-[8.5px] uppercase tracking-[0.15em] text-black/50 dark:text-white/50 font-bold">
+              Pretending to Know Things
+            </span>
           </div>
 
-          <p className="font-mono text-xs sm:text-sm text-black/60 dark:text-white/60 uppercase tracking-widest mt-3 pointer-events-auto max-w-xs sm:max-w-md px-2">
-            I write code that works on the first try (rarely) and spend the rest
-            of the day asking why.
-          </p>
+          <div
+            ref={rolesRef}
+            className="flex flex-col items-center text-center space-y-0.5"
+          >
+            <h2 className="text-[10.5px] font-bold tracking-tight text-black dark:text-white font-serif italic">
+              Student
+            </h2>
+            <h2 className="text-[9.5px] font-mono uppercase tracking-wider text-black/80 dark:text-white/80 font-semibold">
+              Aspiring Full Stack Developer
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2 pt-1.5">
+            {socialLinks.map((item, idx) => (
+              <div key={item.name} className="relative group">
+                <a
+                  ref={(el) => (socialButtonsRef.current[idx] = el)}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onMouseMove={(e) => handleSocialMouseMove(e, idx)}
+                  onMouseLeave={() => handleSocialMouseLeave(idx)}
+                  className="w-7 h-7 rounded-full border-2 border-black/20 dark:border-white/20 bg-white/90 dark:bg-[#12161c]/90 backdrop-blur-sm flex items-center justify-center text-black dark:text-white shadow-[2px_2px_0px_0px_rgba(0,0,0,0.15)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,0.1)] active:scale-95 transition-all"
+                  aria-label={item.name}
+                >
+                  {item.icon}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="z-30 relative flex flex-col sm:flex-row justify-between items-center sm:items-end w-full mt-auto px-4 sm:px-8 pb-4 sm:pb-8 gap-3 pointer-events-auto">
+      <div className="z-30 relative hidden sm:flex justify-between items-end w-full mt-auto px-8 pb-8 pointer-events-auto">
         <div className="flex items-center gap-2.5">
           {socialLinks.map((item, idx) => (
             <div key={item.name} className="relative group">
@@ -287,12 +325,12 @@ export default function Hero({
                 rel="noreferrer"
                 onMouseMove={(e) => handleSocialMouseMove(e, idx)}
                 onMouseLeave={() => handleSocialMouseLeave(idx)}
-                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-black/20 dark:border-white/20 bg-white/90 dark:bg-[#12161c]/90 backdrop-blur-sm flex items-center justify-center text-black dark:text-white shadow-sm transition-colors duration-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white active:scale-95 will-change-transform"
+                className="w-11 h-11 rounded-full border border-black/20 dark:border-white/20 bg-white/90 dark:bg-[#12161c]/90 backdrop-blur-sm flex items-center justify-center text-black dark:text-white shadow-sm transition-colors duration-200 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-white active:scale-95 will-change-transform"
                 aria-label={item.name}
               >
                 {item.icon}
               </a>
-              <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black text-[10px] font-mono rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-md hidden sm:block">
+              <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2 py-0.5 bg-black text-white dark:bg-white dark:text-black text-[10px] font-mono rounded-md opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-md block">
                 {item.name}
               </span>
             </div>
@@ -301,12 +339,12 @@ export default function Hero({
 
         <div
           ref={rolesRef}
-          className="flex flex-col items-center sm:items-end text-center sm:text-right"
+          className="flex flex-col items-end text-right space-y-0"
         >
           {roles.map((role, idx) => (
             <h2
               key={idx}
-              className="text-xs sm:text-xl md:text-2xl font-light tracking-tight leading-snug text-black dark:text-white"
+              className="text-xl md:text-2xl font-light tracking-tight leading-snug text-black dark:text-white"
             >
               {role}
             </h2>
