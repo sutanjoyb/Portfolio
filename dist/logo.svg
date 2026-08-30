@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <!-- Background Container -->
+  <rect width="512" height="512" rx="112" fill="#faf9f5" stroke="#000000" stroke-width="16" />
+
+  <!-- Code Bracket Left -->
+  <path d="M144 160 L80 256 L144 352" fill="none" stroke="#000000" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Code Bracket Right -->
+  <path d="M368 160 L432 256 L368 352" fill="none" stroke="#000000" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Monogram SJOY Typography -->
+  <text 
+    x="50%" 
+    y="53%" 
+    font-family="monospace, -apple-system, sans-serif" 
+    font-size="88" 
+    font-weight="900" 
+    letter-spacing="-1"
+    fill="#000000" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+  >
+    SJOY
+  </text>
+</svg>
