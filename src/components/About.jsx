@@ -12,8 +12,6 @@ export default function About() {
   const imageWrapperRef = useRef(null);
   const imageRef = useRef(null);
   const glareRef = useRef(null);
-  const marqueeTrackRef = useRef(null);
-  const marqueeTweenRef = useRef(null);
 
   const skills = [
     {
@@ -29,6 +27,14 @@ export default function About() {
       svg: (
         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M3 2l1.64 18.45L12 23l7.36-2.55L21 2H3zm15.75 6l-.45 4h-8.8l.21 2.37h8.38l-.56 6.28L12 21.78l-4.57-1.27-.29-3.51h2.26l.15 1.68 2.31.62 2.31-.62.19-2.15H5.82L5.25 4h13.95l-.45 4z" />
+        </svg>
+      ),
+    },
+    {
+      name: "Bootstrap",
+      svg: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 3h9.5a5.5 5.5 0 0 1 5.5 5.5c0 2.03-1.12 3.8-2.78 4.75A5.75 5.75 0 0 1 21 18.5A5.5 5.5 0 0 1 15.5 24H5V3zm5 6.5h3.5a2 2 0 1 0 0-4H10v4zm0 8.5h4a2.25 2.25 0 0 0 0-4.5h-4V18z" />
         </svg>
       ),
     },
@@ -86,10 +92,34 @@ export default function About() {
       ),
     },
     {
+      name: "C",
+      svg: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.2 13.5a5 5 0 1 1 0-7 1 1 0 0 1-1.4 1.4 3 3 0 1 0 0 4.2 1 1 0 0 1 1.4 1.4z" />
+        </svg>
+      ),
+    },
+    {
+      name: "C++",
+      svg: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.2 12.1a4.5 4.5 0 1 1 0-4.2 1 1 0 1 1-1.4 1.4 2.5 2.5 0 1 0 0 2.8 1 1 0 1 1 1.4 1.4zm5-6.5h-1.5V7a1 1 0 0 0-2 0v1.5H13.2a1 1 0 0 0 0 2H14.7V12a1 1 0 0 0 2 0v-1.5h1.5a1 1 0 0 0 0-2zm-10 6h-1.5V13a1 1 0 0 0-2 0v1.5H3.2a1 1 0 0 0 0 2H4.7V18a1 1 0 0 0 2 0v-1.5h1.5a1 1 0 0 0 0-2z" />
+        </svg>
+      ),
+    },
+    {
       name: "Python",
       svg: (
         <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M11.91 2C6.93 2 7.25 4.16 7.25 4.16L7.26 6.39H12v.74H4.82S2 6.81 2 11.85c0 5.04 2.47 4.87 2.47 4.87h1.47v-2.07s-.08-2.47 2.43-2.47h4.86s2.35.04 2.35-2.27V4.28S15.93 2 11.91 2zm-2.08 1.47c.45 0 .82.37.82.82s-.37.82-.82.82-.82-.37-.82-.82.37-.82.82-.82zm2.26 18.53c4.98 0 4.66-2.16 4.66-2.16l-.01-2.23H12v-.74h7.18s2.82.32 2.82-4.72c0-5.04-2.47-4.87-2.47-4.87h-1.47v2.07s.08 2.47-2.43 2.47H10.9s-2.35-.04-2.35 2.27v5.63s-.35 2.28 3.67 2.28zm2.08-1.47c-.45 0-.82-.37-.82-.82s.37-.82.82-.82.82.37.82.82-.37.82-.82.82z" />
+        </svg>
+      ),
+    },
+    {
+      name: "Java",
+      svg: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.335 19.865c-1.39 0-2.39-.5-2.39-1.995 0-1.44 1.22-2.16 2.385-2.73 1.355-.665 2.76-1.355 2.76-3.265 0-1.65-1.33-2.61-3.145-2.61-1.62 0-3.04.88-3.46 2.27l1.7.75c.34-.95 1.05-1.42 1.9-1.42.79 0 1.27.42 1.27 1.15 0 1.04-1.12 1.58-2.36 2.19-1.33.65-2.78 1.34-2.78 3.32 0 1.83 1.44 2.88 3.52 2.88 1.81 0 3.23-.84 3.73-2.39l-1.67-.74c-.37.95-1.07 1.37-1.95 1.37zM4.94 19.5c-.3 0-.54-.24-.54-.54V9.81c0-.3.24-.54.54-.54s.54.24.54.54v9.15c0 .3-.24.54-.54.54zm14.12 0c-.3 0-.54-.24-.54-.54V9.81c0-.3.24-.54.54-.54s.54.24.54.54v9.15c0 .3-.24.54-.54.54zm-8.8-13.06c.64 0 1.16-.52 1.16-1.16s-.52-1.16-1.16-1.16-1.16.52-1.16 1.16.52 1.16 1.16 1.16zm0-1.85c.38 0 .69.31.69.69s-.31.69-.69.69-.69-.31-.69-.69.31-.69.69-.69z" />
         </svg>
       ),
     },
@@ -107,6 +137,14 @@ export default function About() {
           <circle cx="6" cy="6" r="3" />
           <path d="M13 6h3a2 2 0 0 1 2 2v7" />
           <line x1="6" y1="9" x2="6" y2="21" />
+        </svg>
+      ),
+    },
+    {
+      name: "GitHub",
+      svg: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
         </svg>
       ),
     },
@@ -129,14 +167,6 @@ export default function About() {
       desc: "Bridging algorithmic problem-solving with smooth, kinetic frontend design.",
     },
   ];
-
-  const handleMouseEnter = () => {
-    if (marqueeTweenRef.current) marqueeTweenRef.current.pause();
-  };
-
-  const handleMouseLeave = () => {
-    if (marqueeTweenRef.current) marqueeTweenRef.current.play();
-  };
 
   const handlePhotoMouseMove = (e) => {
     const card = imageWrapperRef.current;
@@ -206,16 +236,6 @@ export default function About() {
           "-=0.5",
         );
       }
-
-      const marquee = marqueeTrackRef.current;
-      if (marquee) {
-        marqueeTweenRef.current = gsap.to(marquee, {
-          xPercent: -50,
-          repeat: -1,
-          duration: 32,
-          ease: "none",
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -225,18 +245,13 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="scroll-mt-24 mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
+      className="-mt-8 sm:-mt-12 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
     >
       <div
         ref={headerRef}
         className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black dark:border-white/20 pb-5 mb-10 gap-4 transition-colors duration-300"
       >
         <div className="text-left">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs uppercase tracking-[0.25em] text-black dark:text-white font-mono font-bold">
-              ✦ 01 DOSSIER
-            </span>
-          </div>
           <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black dark:text-white leading-none">
             Want The Lore, Huh?
           </h3>
@@ -333,31 +348,37 @@ export default function About() {
         </div>
       </div>
 
-      <div className="border-t border-black/15 dark:border-white/15 mt-16 pt-10 overflow-hidden text-center transition-colors duration-300">
-        <div className="flex justify-center items-center mb-6">
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-black/60 dark:text-white/60 font-bold">
-            ✦ Technical Arsenal ✦
-          </span>
+      <div className="border-t border-black/15 dark:border-white/15 mt-16 pt-10 text-center transition-colors duration-300">
+        <div className="flex justify-center items-center mb-10">
+          <h3 className="text-3xl sm:text-5xl font-black tracking-tighter uppercase text-black dark:text-white">
+            TECHNICAL EXPERTISE
+          </h3>
         </div>
 
-        <div
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
-        >
-          <div
-            ref={marqueeTrackRef}
-            className="flex items-center gap-4 w-max will-change-transform py-2"
-          >
-            {[...skills, ...skills].map((skill, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/15 dark:border-white/20 bg-[#faf9f5] dark:bg-[#12161c] font-mono text-xs sm:text-sm text-black dark:text-white font-semibold shadow-sm shrink-0 transition-colors duration-300"
-              >
-                <span className="shrink-0">{skill.svg}</span>
-                <span>{skill.name}</span>
-              </div>
-            ))}
+        <div className="w-full max-w-4xl mx-auto flex justify-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 justify-items-center w-full">
+            {skills.map((skill, index) => {
+              const isLastInRow = (index + 1) % 4 === 0;
+              const isBottomRow = index >= skills.length - 4;
+
+              return (
+                <div
+                  key={skill.name}
+                  className={`w-full flex items-center justify-center gap-2.5 py-4 px-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-black dark:text-white transition-colors ${
+                    !isLastInRow
+                      ? "border-r border-black/15 dark:border-white/15"
+                      : ""
+                  } ${
+                    !isBottomRow
+                      ? "border-b border-black/15 dark:border-white/15"
+                      : ""
+                  }`}
+                >
+                  <span className="shrink-0">{skill.svg}</span>
+                  <span className="truncate">{skill.name}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

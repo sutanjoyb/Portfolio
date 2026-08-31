@@ -109,18 +109,13 @@ export default function Contact({ email = "bsutanjoy@gmail.com" }) {
     <section
       id="contact"
       ref={sectionRef}
-      className="scroll-mt-28 mt-24 sm:mt-36 mb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
+      className="-mt-8 sm:-mt-12 pb-16 relative z-10 w-full px-4 sm:px-8 max-w-7xl mx-auto"
     >
       <div
         ref={headerRef}
         className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black dark:border-white/20 pb-5 mb-10 gap-4 transition-colors duration-300"
       >
         <div className="text-left flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs uppercase tracking-[0.25em] text-black dark:text-white font-mono font-bold">
-              ✦ 03 RADAR
-            </span>
-          </div>
           <h3 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-black dark:text-white leading-none">
             Don't Be A Stranger.
           </h3>
